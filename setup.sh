@@ -28,7 +28,7 @@ echo ">>> Extracting TeX Live installer..."
 tar --strip-components 1 -zxf /tmp/install-tl/install-tl-unx.tar.gz -C /tmp/install-tl/installer
 
 echo ">>> Installing TeX Live..."
-retry 3 /tmp/install-tl/installer/install-tl -profile=/texlive.profile
+/tmp/install-tl/installer/install-tl -profile=/texlive.profile
 
 TLMGR=$(find /usr/local/texlive -name tlmgr)
 echo ">>> tlmgr path: ${TLMGR}"

@@ -4,23 +4,12 @@ set -e
 TEXLIVE_VERSION="${1}"
 LILYPOND_VERSION="${2}"
 
-install_packages() {
-    echo ">>> Running apt-get update..."
-    apt-get update -y
-
-    echo ">>> Installing packages: ${@}"
-    apt-get -y install --no-install-recommends "${@}"
-}
-
-
 if [ "${VERSION}" = "latest" ]
 then
     URL="https://mirror.ctan.org/systems/texlive/tlnet"
 else
     URL="http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/${TEXLIVE_VERSION}"
 fi
-
-install_packages ca-certificates curl libfile-homedir-perl libunicode-linebreak-perl libyaml-tiny-perl perl-doc
 
 mkdir -p /tmp/install-tl/installer
 cd /tmp/install-tl
@@ -51,8 +40,6 @@ ${TLMGR} path add || true
 
 LILYPOND_PACKAGE=lilypond-${LILYPOND_VERSION}-linux-x86_64.tar.gz
 
-install_packages bzip2 ghostscript unzip wget
-
 echo ">>> Downloading EB Garamond font..."
 curl -L https://github.com/octaviopardo/EBGaramond12/archive/refs/heads/master.zip -o ebgaramond.zip
 
@@ -74,6 +61,5 @@ done
 
 # Clean up
 rm -rf ./${LILYPOND_PACKAGE} ./EBGaramond12-master ./ebgaramond.zip
-apt-get clean
 
 echo ">>> Done!"

@@ -1,6 +1,6 @@
-FROM gitpod/workspace-base:2024-03-06-11-21-33
+FROM gitpod/workspace-base:2024-03-27-12-29-58
 
-ARG TEXLIVE_VERSION=2023
+ARG TEXLIVE_VERSION=2024
 ARG LILYPOND_VERSION=2.24.3
 
 COPY /setup.sh /texlive_pgp_keys.asc /texlive.profile /

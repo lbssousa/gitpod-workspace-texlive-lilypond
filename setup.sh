@@ -6,7 +6,7 @@ LILYPOND_VERSION="${2}"
 
 if [ "${VERSION}" = "latest" ]
 then
-    URL="https://mirrors.ctan.org/systems/texlive/tlnet"
+    URL="https://linorg.usp.br/CTAN/systems/texlive/tlnet"
 else
     URL="http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/${TEXLIVE_VERSION}"
 fi

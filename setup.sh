@@ -4,9 +4,9 @@ set -e
 TEXLIVE_VERSION="${1}"
 LILYPOND_VERSION="${2}"
 
-if [ "${VERSION}" = "latest" ]
+if [ "${TEXLIVE_VERSION}" = "latest" ]
 then
-    URL="https://linorg.usp.br/CTAN/systems/texlive/tlnet"
+    URL="https://mirrors.ctan.org/systems/texlive/tlnet"
 else
     URL="http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/${TEXLIVE_VERSION}"
 fi
@@ -19,10 +19,10 @@ curl -OL ${URL}/install-tl-unx.tar.gz
 curl -OL ${URL}/install-tl-unx.tar.gz.sha512
 curl -OL ${URL}/install-tl-unx.tar.gz.sha512.asc
 
-#echo ">>> Validating TeX Live installer integrity..."
-#gpg --import /texlive_pgp_keys.asc
-#gpg --verify ./install-tl-unx.tar.gz.sha512.asc ./install-tl-unx.tar.gz.sha512
-#sha512sum -c ./install-tl-unx.tar.gz.sha512
+echo ">>> Validating TeX Live installer integrity..."
+gpg --import /texlive_pgp_keys.asc
+gpg --verify ./install-tl-unx.tar.gz.sha512.asc ./install-tl-unx.tar.gz.sha512
+sha512sum -c ./install-tl-unx.tar.gz.sha512
 
 echo ">>> Extracting TeX Live installer..."
 tar --strip-components 1 -zxf /tmp/install-tl/install-tl-unx.tar.gz -C /tmp/install-tl/installer
